@@ -1,13 +1,13 @@
 <!doctype html>  
-<html lang="en">
+<html lang="pt-BR">
 	
 	<head>
 		<meta charset="utf-8">
 		
-		<title>reveal.js - The HTML Presentation Framework</title>
+		<title>Palestra Peculiaridades do JavaScript - Leonardo Alberto Souza</title>
 
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
+		<meta name="description" content="Palestra sobre as diferenças de JacaScript para Java e outras linguagens C-like">
+		<meta name="author" content="Leonardo Alberto Souza">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -15,7 +15,7 @@
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 		
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+		<link rel="stylesheet" href="css/theme/sky.css" id="theme">
 
 		<!-- For syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -40,23 +40,341 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Reveal.js</h1>
-					<h3>HTML Presentations Made Easy</h3>
+					<h1>Peculiaridades do JavaScript</h1>
+					<h3>(ou <em>O que o JS tem</em>)</h3>
 				</section>
 				
 				<section>
-					<h2>Heads Up</h2>
 					<p>
-						reveal.js is a framework for easily creating beautiful presentations using HTML. You'll need a browser with 
-						support for CSS 3D transforms to see it in its full glory.
+						JavaScript é uma linguagem bem fácil de aprender, mas tão difícil de dominar quanto a maioria das linguagens de programação.
 					</p>
 					<p>
-						<i><small>- <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small></i>
+						Ela também é bastante odiada por programadores que pensam que não a conhecem muito bem.
 					</p>
+					<p>
+						Essa apresentação visa mostrar um pouco daquilo que JavaScript tem de diferente e resolver algums dos erros e enganos comuns.
+					</p>
+				</section>
 
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you run the speaker notes server.
-					</aside>
+				<section>
+
+					<section>
+						<h2>O grande equívoco: JavaScript não é Java!</h2>
+						<p>
+							JavaScript foi batizada pelo seu criador, Brendan Eich, como <strong>LiveScript</strong>. Na época Java era uma nova e emergente tecnologia, que já estava aparecendo nos browsers... A Netscape achou que seria uma boa ideia pegar uma carona e colocou Java no nome.
+						</p>
+						<p>
+							As pessoas passaram a achar que JavaScript era um Java mais limitado, ou um Java para o browser. Mas a verdade é que JS e Java tem bem pouco em comum...
+						</p>
+					</section>
+					
+					<section>
+						<blockquote lang="en" cite="http://javascript.crockford.com/javascript.html">
+							JavaScript's C-like syntax, including curly braces and the clunky <code>for</code> statement, makes it appear to be an ordinary procedural language. This is misleading because JavaScript has more in common with <strong>functional</strong> languages like Lisp or Scheme than with C or Java. It has <strong>arrays</strong> instead of lists and <strong>objects</strong> instead of property lists. <strong>Functions are first class</strong>. It has <strong>closures</strong>. You get <strong>lambdas</strong> without having to balance all those parens.
+						</blockquote>						
+						<p lang="en">
+							<i><small>- <a href="http://javascript.crockford.com/javascript.html">The World's Most Misunderstood Programming Language</a> - <a href="http://www.crockford.com/">Douglas Crockford</a></small></i>
+						</p>
+					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>O que JavaScript é?</h2>
+						<blockquote lang="en" cite="http://en.wikipedia.org/wiki/JavaScript">
+							JavaScript (sometimes abbreviated JS) is a <strong>prototype-based</strong> scripting language that is <strong>dynamic</strong>, <strong>weakly typed</strong> and has <strong>first-class functions</strong>. It is a multi-paradigm language, supporting <strong>object-oriented</strong>, imperative, and <strong>functional</strong> programming styles.
+						</blockquote>
+						<p lang="en">
+							<i><small>- <a href="http://en.wikipedia.org/wiki/JavaScript">Wikipedia</a></small></i>
+						</p>
+					</section>
+					
+					<section>
+						<h3>Peculiaridades</h3>
+						<ul lang="en">
+							<li class="fragment">dynamic</li>
+							<li class="fragment">wekly typed</li>
+							<li class="fragment">object-oriented</li>
+							<li class="fragment">prototype-based</li>
+							<li class="fragment">first-class functions</li>
+							<li class="fragment">functional</li>
+						</ul>
+					</section>
+
+				</section>
+
+				<section>
+					
+					<section>
+
+						<h2>Tipagem: Dinâmica e Fraca</h2>
+						<ul>
+							<li>O tipo das variaveis é definido em tempo de execução (como Ruby, Perl, Python, Groovy, PHP e Lisp)</li>
+							<li>O tipo da variavel pode mudar (como Perl, PHP, Visual Basic e AppleScript)</li>
+						</ul>
+
+					</section>
+
+					<section>
+						
+						<p>
+							Em Linguagens estritas e de tipagem forte isso aqui vai causar erros:
+						</p>
+						<pre><code>
+var x = 1;
+typeof x; // 'number'
+
+x = '';
+typeof x; // 'string'
+						</code></pre>
+
+
+					</section>
+
+					<section>
+						
+						<h3>Como saber se a variavel é do tipo que eu quero?</h3>
+						<pre><code>
+// String:
+typeof variable === "string"
+
+// Number:
+typeof variable === "number"
+
+// Boolean:
+typeof variable === "boolean"
+
+// Object:
+typeof variable === "object"
+
+// Function:
+typeof variable === "function"
+
+// Array:
+Array.isArray(arrayObject)
+						</code></pre>
+						<p><small><code>typeof</code> é um operador ;)</small></p>
+
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Igualdade, Verdade e Falsidade</h2>
+						<h3><code>===</code> vs. <code>==</code></h3>
+						<p>
+							<code>===</code> e <code>!==</code> testam se os valores tem o mesmo tipo, então... 
+						</p>
+						<pre><code>
+1 == '1' // true
+1 === '1' // false
+'1' !== 1 // true
+'1' != 1 // false
+						</code></pre>
+					</section>
+
+					<section>
+						<h3>Verdade e Falsidade</h3>
+						<p>
+							<em>ou nem tudo que parece verdade é...</em>
+							<pre><code contenteditable>
+if ("teste") {
+    console.log("teste" == false); // false
+    console.log("teste" == true); // false
+    console.log("teste" === false); // false
+    console.log("teste" === true); // false
+}
+							</code></pre>
+						</p>
+					</section>
+
+					<section>
+						<p>
+							A conversão para <code>boolean</code> usada em um <code>if</code> (ou no construtor <code>Boolean()</code>) segue a seguinte regra:
+						</p>
+						<p>
+							<small><code>false</code>, <code>''</code>, <code>0</code>, <code>NaN</code>, <code>null</code> e <code>undefined</code> são falsos, o resto é verdadeiro.</small>
+						</p>
+						<pre><code contenteditable>
+Boolean([]); // true
+Boolean([false]); // true
+Boolean('false'); // true
+Boolean(false); // false
+Boolean(0); // false
+						</code></pre>
+
+						<p><small>Recomendo ler: <a href="http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/">Uma explicação longa e detalhada sobre o assunto</a></small></p>
+						
+					</section>
+
+				</section>
+
+				<section>
+					
+					<section>
+						
+						<h2>Escopo e Hosting de Variaveis</h2>
+
+						<p>JavaScript só tem dois escopos: global e de função... então:</p>
+
+						<pre><code contenteditable>
+var vetor = ['a', 'b', 'c', 'd', 'e'];
+
+for (var i = 0; i < vetor.length; i++) {
+	var x = 10;
+}
+
+console.log( i ); // 4
+console.log( x ); // 10
+
+						</code></pre>
+
+					</section>
+
+					<section>
+						
+						<p>A declaração da variavel é hasteada ao topo do escopo, mas a atribuição não:</p>
+
+						<pre><code contenteditable>
+function doSomething() {
+	var x = 10;
+	console.log( y ); // undefined
+	console.log( z ); // undefined
+	( ... )
+	if ( true ) {
+		var y = 5;
+	}
+	var z = x + 5;
+	console.log( y ); // 5
+	console.log( z ); // 15
+
+}
+						</code></pre>
+
+					</section>
+
+					<section>
+						
+						<h3>Cuidado com globais implicitas!</h3>
+
+						<pre><code contenteditable>
+function doSomething() {
+	x = 10;
+}
+function doOtherThing() {
+	var y = 10;
+}
+
+doSomething();
+doOtherThing();
+console.log( x ); // 10
+console.log( y ); // ReferenceError: y is not defined
+
+						</code></pre>
+
+					</section>
+
+				</section>
+
+				<section>
+					
+					<section>
+						<h2>Funções</h2>
+
+						<p>No JavaScript funções são objetos de primeira classe.</p>
+						<p>O seja: elas podem ter métodos e propriedades, podem ser atribuídas à variaveis, criadas em tempo de execução e podem ser passadas como parametros e retornadas de/para outras funções.</p>
+
+					</section>
+
+					<section>
+						
+						<pre><code contenteditable>
+function somar( a, b ) {
+	return a + b;
+}
+
+function multiplicar ( a, b ) {
+	return a * b;
+}
+
+function criarFuncao( func, n ) {
+	return function ( x ) {
+		return func( n, x );
+	};
+}
+
+var soma1 = criarFuncao( somar, 1 );
+var mult2 = criarFuncao( multiplicar, 2 );
+
+soma1(2); // 3
+mult2(6); // 12
+
+						</code></pre>
+
+					</section>
+
+					<section>
+						
+						<p>Funções criam closures. Ou seja: elas tem acesso as variaveis do escopo em que foram criadas</p>
+
+						<pre><code contenteditable>
+function criarContador() {
+	var x = 0;
+
+	return function () {
+		return ++x;
+	};
+}
+
+var contA = criarContador();
+var contB = criarContador();
+
+contA(); // 1
+contA(); // 2
+contA(); // 3
+
+contB(); // 1
+						</code></pre>
+
+					</section>
+
+					<section>
+						
+						<h3>Declaração de Função vs. Expressão de Função</h3>
+						<p>Declarações de Funções são hastedas</p>
+						<pre><code contenteditable>
+foo(); // true
+bar(); // TypeError: bar is not a function
+function foo(){return true};
+var bar = function(){return true;};
+						</code></pre>
+
+					</section>
+
+					<section>
+						<p>Expressões de Função podem ser auto-executadas</p>
+						<pre><code>
+var a = (function(){
+	return 10;
+}());
+
+console.log( a ); // 10
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Expressões de Função são funções anônimas</p>
+						<pre><code>
+function a(){}
+var b = function(){};
+
+console.log( a.name ); // 'a'
+console.log( b.name ); // ''
+						</code></pre>
+					</section>
+
 				</section>
 				
 				<!-- Example of nested vertical slides -->
@@ -336,7 +654,7 @@ function linkify( selector ) {
 				progress: true,
 				history: true,
 				
-				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				theme: Reveal.getQueryHash().theme || 'sky', // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
 				// Optional libraries used to extend on reveal.js

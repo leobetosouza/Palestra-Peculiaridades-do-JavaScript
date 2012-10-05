@@ -104,7 +104,7 @@ body {
  *********************************************/
 
 .reveal .slides section {
-	line-height: 1.2em;
+	line-height: 1.5em;
 	font-weight: normal;
 }
 
@@ -158,7 +158,7 @@ body {
 
 .reveal p {
 	margin-bottom: 10px;
-	line-height: 1.2em;
+	line-height: 1.4em;
 }
 
 .reveal q,
@@ -236,7 +236,7 @@ body {
 .reveal small {
 	display: inline-block;
 	font-size: 0.6em;
-	line-height: 1.2em;
+	line-height: 1.4em;
 	vertical-align: top;
 }
 

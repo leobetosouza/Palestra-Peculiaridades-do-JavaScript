@@ -67,6 +67,10 @@ body {
 	text-transform: uppercase;
 }
 
+.reveal h1{
+	font-size: 2.7em;
+}
+
 
 /*********************************************
  * LINKS
@@ -87,7 +91,9 @@ body {
 		border: none;
 		border-radius: 2px;
 	}
-
+.reveal .roll{
+	line-height: 1.4em;
+}
 .reveal .roll span:after {
 	color: #fff;
 	background: #3b759e;
