@@ -70,7 +70,7 @@
 					
 					<section>
 						<blockquote lang="en" cite="http://javascript.crockford.com/javascript.html">
-							JavaScript's C-like syntax, including curly braces and the clunky <code>for</code> statement, makes it appear to be an ordinary procedural language. This is misleading because JavaScript has more in common with <strong>functional</strong> languages like Lisp or Scheme than with C or Java. It has <strong>arrays</strong> instead of lists and <strong>objects</strong> instead of property lists. <strong>Functions are first class</strong>. It has <strong>closures</strong>. You get <strong>lambdas</strong> without having to balance all those parens.
+							<small>JavaScript's C-like syntax, including curly braces and the clunky <code>for</code> statement, makes it appear to be an ordinary procedural language. This is misleading because JavaScript has more in common with <strong>functional</strong> languages like Lisp or Scheme than with C or Java. It has <strong>arrays</strong> instead of lists and <strong>objects</strong> instead of property lists. <strong>Functions are first class</strong>. It has <strong>closures</strong>. You get <strong>lambdas</strong> without having to balance all those parens.</small>
 						</blockquote>						
 						<p lang="en">
 							<i><small>- <a href="http://javascript.crockford.com/javascript.html">The World's Most Misunderstood Programming Language</a> - <a href="http://www.crockford.com/">Douglas Crockford</a></small></i>
@@ -220,9 +220,9 @@ Boolean(0); // false
 						<p>JavaScript só tem dois escopos: global e de função... então:</p>
 
 						<pre><code contenteditable>
-var vetor = ['a', 'b', 'c', 'd', 'e'];
+var vogais = ['a', 'e', 'i', 'o', 'u'];
 
-for (var i = 0; i < vetor.length; i++) {
+for (var i = 0; i < vogais.length; i++) {
 	var x = 10;
 }
 
@@ -373,6 +373,42 @@ var b = function(){};
 console.log( a.name ); // 'a'
 console.log( b.name ); // ''
 						</code></pre>
+					</section>
+
+					<section>
+						
+						<p>Funções Anônimas Auto-executáveis são um pattern comum para criar escopo local</p>
+						<pre><code contenteditable="">
+(function($){
+	// pode usar o objeto $ com segurança
+}(jQuery));
+						</code></pre>
+					</section>
+
+					<section>
+						
+						<p>O Module Pattern usa closures numa função anônima para criar métodos privados</p>
+						<pre><code contenteditable>
+var myNamespace = (function () {
+  var myPrivateVar = 0;
+  var myPrivateMethod = function( foo ) {
+      console.log( foo );
+  };
+
+  return {
+    myPublicVar: "foo",
+    myPublicFunction: function( bar ) {
+      // Increment our private counter
+      myPrivateVar++;
+
+      // Call our private method using bar
+      myPrivateMethod( bar );
+    }
+  };
+
+})();
+						</code></pre>
+
 					</section>
 
 				</section>
