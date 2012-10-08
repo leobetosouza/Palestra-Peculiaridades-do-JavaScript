@@ -44,7 +44,7 @@
 					<h3>(ou <em>O que o JS tem</em>)</h3>
 				</section>
 				
-				<section>
+				<section style="font-size:.7em">
 					<p>
 						JavaScript é uma linguagem bem fácil de aprender, mas tão difícil de dominar quanto a maioria das linguagens de programação.
 					</p>
@@ -60,17 +60,17 @@
 
 					<section>
 						<h2>O grande equívoco: JavaScript não é Java!</h2>
-						<p>
-							JavaScript foi batizada pelo seu criador, Brendan Eich, como <strong>LiveScript</strong>. Na época Java era uma nova e emergente tecnologia, que já estava aparecendo nos browsers... A Netscape achou que seria uma boa ideia pegar uma carona e colocou Java no nome.
+						<p style="font-size:.7em">
+							JavaScript foi batizada pelo seu criador, Brendan Eich, como <strong>LiveScript</strong>. Na época Java era uma nova e emergente tecnologia, que já estava aparecendo nos browsers. A Netscape achou que seria uma boa ideia pegar uma carona e colocou Java no nome.
 						</p>
-						<p>
+						<p style="font-size:.7em">
 							As pessoas passaram a achar que JavaScript era um Java mais limitado, ou um Java para o browser. Mas a verdade é que JS e Java tem bem pouco em comum...
 						</p>
 					</section>
 					
 					<section>
-						<blockquote lang="en" cite="http://javascript.crockford.com/javascript.html">
-							<small>JavaScript's C-like syntax, including curly braces and the clunky <code>for</code> statement, makes it appear to be an ordinary procedural language. This is misleading because JavaScript has more in common with <strong>functional</strong> languages like Lisp or Scheme than with C or Java. It has <strong>arrays</strong> instead of lists and <strong>objects</strong> instead of property lists. <strong>Functions are first class</strong>. It has <strong>closures</strong>. You get <strong>lambdas</strong> without having to balance all those parens.</small>
+						<blockquote lang="en" cite="http://javascript.crockford.com/javascript.html" style="font-size:.7em">
+							JavaScript's C-like syntax, including curly braces and the clunky <code>for</code> statement, makes it appear to be an ordinary procedural language. This is misleading because JavaScript has more in common with <strong>functional</strong> languages like Lisp or Scheme than with C or Java. It has <strong>arrays</strong> instead of lists and <strong>objects</strong> instead of property lists. <strong>Functions are first class</strong>. It has <strong>closures</strong>. You get <strong>lambdas</strong> without having to balance all those parens.
 						</blockquote>						
 						<p lang="en">
 							<i><small>- <a href="http://javascript.crockford.com/javascript.html">The World's Most Misunderstood Programming Language</a> - <a href="http://www.crockford.com/">Douglas Crockford</a></small></i>
@@ -83,7 +83,7 @@
 
 					<section>
 						<h2>O que JavaScript é?</h2>
-						<blockquote lang="en" cite="http://en.wikipedia.org/wiki/JavaScript">
+						<blockquote lang="en" cite="http://en.wikipedia.org/wiki/JavaScript" style="font-size:.7em">
 							JavaScript (sometimes abbreviated JS) is a <strong>prototype-based</strong> scripting language that is <strong>dynamic</strong>, <strong>weakly typed</strong> and has <strong>first-class functions</strong>. It is a multi-paradigm language, supporting <strong>object-oriented</strong>, imperative, and <strong>functional</strong> programming styles.
 						</blockquote>
 						<p lang="en">
@@ -136,7 +136,7 @@ typeof x; // 'string'
 					<section>
 						
 						<h3>Como saber se a variavel é do tipo que eu quero?</h3>
-						<pre><code>
+						<pre style="font-size:.5em"><code>
 // String:
 typeof variable === "string"
 
@@ -290,7 +290,7 @@ console.log( y ); // ReferenceError: y is not defined
 
 					<section>
 						
-						<pre><code contenteditable>
+						<pre style="font-size:.4em"><code contenteditable>
 function somar( a, b ) {
 	return a + b;
 }
@@ -321,7 +321,7 @@ mult2(6); // 12
 							Funções criam closures. Ou seja: elas tem acesso as variaveis do escopo em que foram criadas
 						</p>
 
-						<pre><code contenteditable>
+						<pre style="font-size:.4em"><code contenteditable>
 function criarContador() {
 	var x = 0;
 
@@ -390,7 +390,7 @@ console.log( teste2.name ); // ''
 					<section>
 						
 						<p>O Module Pattern usa closures numa função anônima para criar métodos privados</p>
-						<pre><code contenteditable>
+						<pre style="font-size:.4em"><code contenteditable>
 var myNamespace = (function () {
   var myPrivateVar = 0;
   var myPrivateMethod = function( foo ) {
@@ -413,8 +413,291 @@ var myNamespace = (function () {
 
 					</section>
 
+					<section>
+						<h3>Argumentos</h3>
+
+						<pre><code contenteditable>
+function soma ( a, b ) {
+	return a + b;
+}
+
+soma( 2, 2 ); // 4
+soma( 3 ); // NaN
+						</code></pre>
+
+					</section>
+
+					<section>
+						<p>Parametros com valores padrões</p>
+						<pre><code contenteditable>
+function soma ( a, b ) {
+	b = b || 0;
+	return a + b;
+}
+
+soma( 3 ); // 3
+						</code></pre>
+
+					</section>
+
+					<section>
+						<p>Número infinito de argumentos</p>
+						<pre><code contenteditable>
+function soma() {
+	var i;
+	var cont = 0;
+
+	for ( i = 0; i < arguments.length; i++ ) {
+		cont += arguments[i];
+	}
+
+	return cont;
+}
+
+soma( 3, 3, 3 ); // 9
+						</code></pre>
+
+					</section>
+
+					<section>
+						<p>Cuidado: <strong>arguments NÃO é um Array!</strong></p>
+						<p>Mas pode ser transformado em um:</p>
+						<pre><code contenteditable>
+function soma() {
+	var args = Array.prototype.slice.call( arguments );
+	var cont = 0;
+
+	args.forEach(function( x ){
+		cont += x;
+	});
+
+	return cont;
+}
+
+soma( 2, 2, 2, 2 ); // 8
+						</code></pre>
+
+					</section>
+
+					<section data->
+						<p>Sobrecarga</p>
+						<p><small>Definir a mesma funcão varias vezes, sobescreve a funcão anterior</small></p>
+						<pre><code contentedtable>
+function volume( s ) {
+	// volume of a cube
+	return s * s * s;
+}
+function volume( r, h ) {
+	// volume of a cylinder
+	return 3.14 * r * r * h;
+}
+function volume( l, b, h ) {
+	// volume of a cuboid
+	return l * b * h;
+}
+
+volume( 3 ); // NaN
+						</code></pre>
+					</section>
+					<section>
+						<p>A maneira de fazer function overloading em JS é tratando os argumentos:</p>
+
+						<pre style="font-size:.-ms-scrollbar-3dlight-color: em"><code contentedtable>
+function volume() {
+	var s, r, h, b, l;
+
+	if ( arguments[1] === undefined ) {
+		// volume of a cube
+		s = arguments[0];
+		return s * s * s;
+	}
+
+	if ( arguments[2] === undefined ) {
+		// volume of a cylinder
+		r = arguments[0];
+		h = arguments[1];
+		return 3.14 * r * r * h;
+	}
+
+	if ( arguments[3] === undefined ) {
+		// volume of a cuboid
+		l = arguments[0];
+		b = arguments[1];
+		h = arguments[2];
+		return l * b * h;
+	}
+} 
+						</code></pre>
+						<p><small><a href="http://en.wikipedia.org/wiki/Function_overloading">Exemplo em C++</a></small></p>
+
+					</section>
+
+
 				</section>
-				
+
+				<section>
+
+					<section>
+						<h2>Objetcs e Arrays</h2>
+						<p><small>Tudo em JavaScript é, ou pode ser manipulado como, um objeto</small></p>
+						
+						<pre><code contentedtable>
+var numero = 123;
+numero.toExponential(); // '1.23e+2'
+
+var bool = false;
+bool.toString(); // 'false'
+
+var vogais = [ 'a', 'e', 'i', 'o', 'u' ];
+typeof vogais; // 'object'
+						</code></pre>
+						<p><small>Os tipos primitivos (number, string e boolean) não são objetos, mas são convertidos para seus respectivos objetos em tempo de execução quando nescessário.</small></p>
+						<p><small>Somente com <code>undefined</code> e <code>null</code> isso não acontece.</small></p>
+					</section>
+
+					<section>
+						<pre><code contenteditable>
+String instanceof Object;
+//true
+
+Array instanceof Object;
+//true
+
+Number instanceof Object;
+//true
+
+Function instanceof Object;
+//true
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Você pode usar o contrutor ou o object literal, mas cuidado com Arrays</p>
+						<pre><code contenteditable>
+var objeto1 = new Object();
+var objeto2 = {};
+
+var vetor1 = new Array( 1, 2, 3 );
+// [1 , 2, 3]
+var vetor2 = new Array( 3 );
+// [ , , ] WTF?
+
+var vetor3 = [ 1, 2, 3 ];
+// [ 1, 2, 3 ]
+var vetor4 = [ 3 ];
+// [ 3 ]
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Cuidado na hora de retornar Object Literals de uma função</p>
+						<pre><code objectliteral>
+var teste = (function() {
+	return
+	{
+		param : 1
+	}
+}());
+
+console.log( teste.param );
+// TypeError: Cannot read property 'param' of undefined
+						</code></pre>
+					</section>
+
+					<section>
+						<p>O ASI (Automatic Semicolon Insertion) insere um ponto-e-virgula após o <code>return</code> e a função retorna <code>undefined</code></p>
+						<pre><code objectliteral>
+var teste = (function() {
+	return {
+		param : 1
+	}
+}());
+
+console.log( teste.param );
+// 1
+						</code></pre>
+					</section>
+
+					<section>
+						<p>JS não tem classes. Herança é prototipal:</p>
+
+						<pre><code contenteditable>
+function Collection(){}
+Collection.prototype = new Array();
+
+var c = new Collection();
+
+c.push( 1 );
+c.push( 2 );
+c.push( 3 );
+
+console.log( c );
+// { '0': 1, '1': 2, '2': 3, length: 3 }
+
+c instanceof Collection; // true
+c instanceof Array; // true
+c instanceof Object; // true
+
+						</code></pre>
+						<p><small><code>typeof</code> também é um operador ;)</small></p>
+					</section>
+
+					<section>
+
+						<pre><code contenteditable>
+Collection.prototype.sum = function() {
+	var cont = 0;
+	this.forEach(function(x){
+		cont+=x;
+	});
+	return cont;
+};
+
+c.sum();
+// 6
+
+typeof Array.prototype.sum; // 'undefined'
+typeof Collection.prototype.sum; // 'function'
+						</code></pre>
+
+					</section>
+
+					<section>
+						<p>Cuidado ao interar em objetos e arrays:</p>
+						<pre><code contenteditable>
+for ( prop in c ) {
+	console.log( prop );
+}
+// 0, 1, 2, length, sum
+
+for ( prop in c ) {
+	console.log( c[prop] );
+}
+// 1, 2, 3, 3, [Function]
+
+						</code></pre>
+					</section>
+
+					<section>
+						<h3>Simulando herança clássica</h3>
+						<pre><code contenteditable>
+function Pessoa( nome, idade ) {
+	this.nome = nome;
+	this.idade = idade;
+
+	console.log( 'Meu nome é ' + this.nome + ' e eu tenho ' + this.idade + ' anos.' );
+}
+
+var jose = new Pessoa('José', 40);
+// 'Meu nome é José e eu tenho 40 anos'
+
+jose.nome; // 'José'
+						</code></pre>
+					</section>	
+
+				</section>
+
+						
 			</div>
 
 			<!-- The navigational controls UI -->
