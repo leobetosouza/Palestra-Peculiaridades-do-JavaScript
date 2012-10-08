@@ -208,6 +208,9 @@ Boolean(0); // false
 						<p><small>Recomendo ler: <a href="http://javascriptweblog.wordpress.com/2011/02/07/truth-equality-and-javascript/">Uma explicação longa e detalhada sobre o assunto</a></small></p>
 						
 					</section>
+					<section data-state='alert'>
+						<p>Por favor, não use <code>Boolean()</code> nos seus códigos, nem <code>if ('teste')</code> :) </p>
+					</section>
 
 				</section>
 
@@ -217,7 +220,7 @@ Boolean(0); // false
 						
 						<h2>Escopo e Hosting de Variaveis</h2>
 
-						<p>JavaScript só tem dois escopos: global e de função:</p>
+						<p>JavaScript só tem dois escopos: global e de função</p>
 
 						<pre><code contenteditable>
 var vogais = ['a', 'e', 'i', 'o', 'u'];
@@ -275,6 +278,168 @@ console.log( y ); // ReferenceError: y is not defined
 						</code></pre>
 
 					</section>
+
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Objetcs e Arrays</h2>
+						<p><small>Tudo em JavaScript é, ou pode ser manipulado como, um objeto</small></p>
+						
+						<pre><code contentedtable>
+var numero = 123;
+numero.toExponential(); // '1.23e+2'
+
+var bool = false;
+bool.toString(); // 'false'
+
+var vogais = [ 'a', 'e', 'i', 'o', 'u' ];
+typeof vogais; // 'object'
+						</code></pre>
+						<p><small>Os tipos primitivos (number, string e boolean) não são objetos, mas são convertidos para seus respectivos objetos em tempo de execução quando necessário.</small></p>
+						<p><small>Somente com <code>undefined</code> e <code>null</code> isso não acontece.</small></p>
+					</section>
+
+					<section>
+						<pre><code contenteditable>
+String instanceof Object;
+//true
+
+Array instanceof Object;
+//true
+
+Number instanceof Object;
+//true
+
+Function instanceof Object;
+//true
+						</code></pre>
+						<p><small><code>instanceof</code> também é um operador ;)</small></p>
+					</section>
+
+					<section>
+						<p>Você pode usar o construtor ou o object literal, mas cuidado com Arrays</p>
+						<pre><code contenteditable>
+var objeto1 = new Object();
+var objeto2 = {};
+
+var vetor1 = new Array( 1, 2, 3 );
+// [1 , 2, 3]
+var vetor2 = new Array( 3 );
+// [ , , ] WTF?
+
+var vetor3 = [ 1, 2, 3 ];
+// [ 1, 2, 3 ]
+var vetor4 = [ 3 ];
+// [ 3 ]
+						</code></pre>
+					</section>
+
+					<section>
+						<p>Cuidado na hora de retornar Object Literals de uma função</p>
+						<pre><code objectliteral>
+var teste = (function() {
+	return
+	{
+		param : 1
+	}
+}());
+
+console.log( teste.param );
+// TypeError: Cannot read property 'param' of undefined
+						</code></pre>
+					</section>
+
+					<section>
+						<p>O ASI (Automatic Semicolon Insertion) insere um ponto-e-virgula após o <code>return</code> e a função retorna <code>undefined</code></p>
+						<pre><code objectliteral>
+var teste = (function() {
+	return {
+		param : 1
+	}
+}());
+
+console.log( teste.param );
+// 1
+						</code></pre>
+					</section>
+
+					<section>
+						<p>JS não tem classes. Herança é prototipal:</p>
+
+						<pre><code contenteditable>
+function Collection(){}
+Collection.prototype = new Array();
+
+var c = new Collection();
+
+c.push( 1 );
+c.push( 2 );
+c.push( 3 );
+
+console.log( c );
+// { '0': 1, '1': 2, '2': 3, length: 3 }
+
+c instanceof Collection; // true
+c instanceof Array; // true
+c instanceof Object; // true
+
+						</code></pre>
+					</section>
+
+					<section>
+
+						<pre><code contenteditable>
+Collection.prototype.sum = function() {
+	var cont = 0;
+	this.forEach(function(x){
+		cont+=x;
+	});
+	return cont;
+};
+
+c.sum();
+// 6
+
+typeof Array.prototype.sum; // 'undefined'
+typeof Collection.prototype.sum; // 'function'
+						</code></pre>
+
+					</section>
+
+					<section>
+						<p>Cuidado ao iterar em objetos e arrays:</p>
+						<pre><code contenteditable>
+for ( prop in c ) {
+	console.log( prop );
+}
+// 0, 1, 2, length, sum
+
+for ( prop in c ) {
+	console.log( c[prop] );
+}
+// 1, 2, 3, 3, [Function]
+
+						</code></pre>
+					</section>
+
+					<!--section>
+						<h3>Simulando herança clássica</h3>
+						<pre><code contenteditable>
+function Pessoa( nome, idade ) {
+	this.nome = nome;
+	this.idade = idade;
+
+	console.log( 'Meu nome é ' + this.nome + ' e eu tenho ' + this.idade + ' anos.' );
+}
+
+var jose = new Pessoa('José', 40);
+// 'Meu nome é José e eu tenho 40 anos'
+
+jose.nome; // 'José'
+						</code></pre>
+					</section-->	
 
 				</section>
 
@@ -345,11 +510,11 @@ contB(); // 1
 					<section>
 						
 						<h3>Declaração de Função vs. Expressão de Função</h3>
-						<p>Declarações de Funções são hastedas</p>
+						<p>Declarações de Função são hasteadas</p>
 						<pre><code contenteditable>
 foo(); // true
 bar(); // TypeError: bar is not a function
-function foo(){return true};
+function foo(){return true;};
 var bar = function(){return true;};
 						</code></pre>
 
@@ -479,7 +644,7 @@ soma( 2, 2, 2, 2 ); // 8
 
 					</section>
 
-					<section data->
+					<section>
 						<p>Sobrecarga</p>
 						<p><small>Definir a mesma funcão varias vezes, sobescreve a funcão anterior</small></p>
 						<pre><code contentedtable>
@@ -499,6 +664,7 @@ function volume( l, b, h ) {
 volume( 3 ); // NaN
 						</code></pre>
 					</section>
+
 					<section>
 						<p>A maneira de fazer function overloading em JS é tratando os argumentos:</p>
 
@@ -535,181 +701,17 @@ function volume() {
 
 				</section>
 
+
 				<section>
-
-					<section>
-						<h2>Objetcs e Arrays</h2>
-						<p><small>Tudo em JavaScript é, ou pode ser manipulado como, um objeto</small></p>
-						
-						<pre><code contentedtable>
-var numero = 123;
-numero.toExponential(); // '1.23e+2'
-
-var bool = false;
-bool.toString(); // 'false'
-
-var vogais = [ 'a', 'e', 'i', 'o', 'u' ];
-typeof vogais; // 'object'
-						</code></pre>
-						<p><small>Os tipos primitivos (number, string e boolean) não são objetos, mas são convertidos para seus respectivos objetos em tempo de execução quando nescessário.</small></p>
-						<p><small>Somente com <code>undefined</code> e <code>null</code> isso não acontece.</small></p>
-					</section>
-
-					<section>
-						<pre><code contenteditable>
-String instanceof Object;
-//true
-
-Array instanceof Object;
-//true
-
-Number instanceof Object;
-//true
-
-Function instanceof Object;
-//true
-						</code></pre>
-						<p><small><code>instanceof</code> também é um operador ;)</small></p>
-					</section>
-
-					<section>
-						<p>Você pode usar o contrutor ou o object literal, mas cuidado com Arrays</p>
-						<pre><code contenteditable>
-var objeto1 = new Object();
-var objeto2 = {};
-
-var vetor1 = new Array( 1, 2, 3 );
-// [1 , 2, 3]
-var vetor2 = new Array( 3 );
-// [ , , ] WTF?
-
-var vetor3 = [ 1, 2, 3 ];
-// [ 1, 2, 3 ]
-var vetor4 = [ 3 ];
-// [ 3 ]
-						</code></pre>
-					</section>
-
-					<section>
-						<p>Cuidado na hora de retornar Object Literals de uma função</p>
-						<pre><code objectliteral>
-var teste = (function() {
-	return
-	{
-		param : 1
-	}
-}());
-
-console.log( teste.param );
-// TypeError: Cannot read property 'param' of undefined
-						</code></pre>
-					</section>
-
-					<section>
-						<p>O ASI (Automatic Semicolon Insertion) insere um ponto-e-virgula após o <code>return</code> e a função retorna <code>undefined</code></p>
-						<pre><code objectliteral>
-var teste = (function() {
-	return {
-		param : 1
-	}
-}());
-
-console.log( teste.param );
-// 1
-						</code></pre>
-					</section>
-
-					<section>
-						<p>JS não tem classes. Herança é prototipal:</p>
-
-						<pre><code contenteditable>
-function Collection(){}
-Collection.prototype = new Array();
-
-var c = new Collection();
-
-c.push( 1 );
-c.push( 2 );
-c.push( 3 );
-
-console.log( c );
-// { '0': 1, '1': 2, '2': 3, length: 3 }
-
-c instanceof Collection; // true
-c instanceof Array; // true
-c instanceof Object; // true
-
-						</code></pre>
-					</section>
-
-					<section>
-
-						<pre><code contenteditable>
-Collection.prototype.sum = function() {
-	var cont = 0;
-	this.forEach(function(x){
-		cont+=x;
-	});
-	return cont;
-};
-
-c.sum();
-// 6
-
-typeof Array.prototype.sum; // 'undefined'
-typeof Collection.prototype.sum; // 'function'
-						</code></pre>
-
-					</section>
-
-					<section>
-						<p>Cuidado ao interar em objetos e arrays:</p>
-						<pre><code contenteditable>
-for ( prop in c ) {
-	console.log( prop );
-}
-// 0, 1, 2, length, sum
-
-for ( prop in c ) {
-	console.log( c[prop] );
-}
-// 1, 2, 3, 3, [Function]
-
-						</code></pre>
-					</section>
-
-					<section>
-						<p>Cuidado ao interar em objetos e arrays:</p>
-						<pre><code contenteditable>
-for ( prop in c ) {
-	console.log( prop );
-}
-// 0, 1, 2, length, sum
-
-for ( prop in c ) {
-	console.log( c[prop] );
-}
-// 1, 2, 3, 3, [Function]
-						</code></pre>
-					</section>
-
-					<section>
-						<h3>Simulando herança clássica</h3>
-						<pre><code contenteditable>
-function Pessoa( nome, idade ) {
-	this.nome = nome;
-	this.idade = idade;
-
-	console.log( 'Meu nome é ' + this.nome + ' e eu tenho ' + this.idade + ' anos.' );
-}
-
-var jose = new Pessoa('José', 40);
-// 'Meu nome é José e eu tenho 40 anos'
-
-jose.nome; // 'José'
-						</code></pre>
-					</section>	
-
+					<h2>Referências</h2>
+					<ul>
+						<li>
+							<a href="https://developer.mozilla.org/en-US/docs/JavaScript">Mozilla Developer Network</a>
+							<a href=""></a>
+							<a href=""></a>
+							<a href=""></a>
+						</li>
+					</ul>
 				</section>
 
 						
