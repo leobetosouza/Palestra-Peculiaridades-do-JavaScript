@@ -49,7 +49,7 @@
 						JavaScript é uma linguagem bem fácil de aprender, mas tão difícil de dominar quanto a maioria das linguagens de programação.
 					</p>
 					<p>
-						Ela também é bastante odiada por programadores que pensam que não a conhecem muito bem.
+						Ela também é bastante odiada por diversos programadores, talvez por não conhecê-la bem.
 					</p>
 					<p>
 						Essa apresentação visa mostrar um pouco daquilo que JavaScript tem de diferente e resolver algums dos erros e enganos comuns.
@@ -91,7 +91,7 @@
 						</p>
 					</section>
 					
-					<section>
+					<!--section>
 						<h3>Peculiaridades</h3>
 						<ul lang="en">
 							<li class="fragment">dynamic</li>
@@ -101,7 +101,7 @@
 							<li class="fragment">first-class functions</li>
 							<li class="fragment">functional</li>
 						</ul>
-					</section>
+					</section-->
 
 				</section>
 
@@ -217,7 +217,7 @@ Boolean(0); // false
 						
 						<h2>Escopo e Hosting de Variaveis</h2>
 
-						<p>JavaScript só tem dois escopos: global e de função... então:</p>
+						<p>JavaScript só tem dois escopos: global e de função:</p>
 
 						<pre><code contenteditable>
 var vogais = ['a', 'e', 'i', 'o', 'u'];
@@ -317,7 +317,9 @@ mult2(6); // 12
 
 					<section>
 						
-						<p>Funções criam closures. Ou seja: elas tem acesso as variaveis do escopo em que foram criadas</p>
+						<p>
+							Funções criam closures. Ou seja: elas tem acesso as variaveis do escopo em que foram criadas
+						</p>
 
 						<pre><code contenteditable>
 function criarContador() {
@@ -367,11 +369,11 @@ console.log( a ); // 10
 					<section>
 						<p>Expressões de Função são funções anônimas</p>
 						<pre><code>
-function a(){}
-var b = function(){};
+function teste1(){}
+var teste2 = function(){};
 
-console.log( a.name ); // 'a'
-console.log( b.name ); // ''
+console.log( teste1.name ); // 'teste1'
+console.log( teste2.name ); // ''
 						</code></pre>
 					</section>
 
