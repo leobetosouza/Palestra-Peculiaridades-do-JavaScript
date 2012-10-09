@@ -645,7 +645,7 @@ soma( 2, 2, 2, 2 ); // 8
 					</section>
 
 					<section>
-						<p>Sobrecarga</p>
+						<h3>Sobrecarga</h3>
 						<p><small>Definir a mesma funcão varias vezes, sobescreve a funcão anterior</small></p>
 						<pre><code contentedtable>
 function volume( s ) {
@@ -666,9 +666,9 @@ volume( 3 ); // NaN
 					</section>
 
 					<section>
-						<p>A maneira de fazer function overloading em JS é tratando os argumentos:</p>
+						<p>uma maneira de fazer function overloading em JS é tratando os argumentos:</p>
 
-						<pre style="font-size:.-ms-scrollbar-3dlight-color: em"><code contentedtable>
+						<pre style="font-size:.4em"><code contentedtable>
 function volume() {
 	var s, r, h, b, l;
 
@@ -677,14 +677,12 @@ function volume() {
 		s = arguments[0];
 		return s * s * s;
 	}
-
 	if ( arguments[2] === undefined ) {
 		// volume of a cylinder
 		r = arguments[0];
 		h = arguments[1];
 		return 3.14 * r * r * h;
 	}
-
 	if ( arguments[3] === undefined ) {
 		// volume of a cuboid
 		l = arguments[0];
@@ -703,15 +701,53 @@ function volume() {
 
 
 				<section>
-					<h2>Referências</h2>
-					<ul>
-						<li>
-							<a href="https://developer.mozilla.org/en-US/docs/JavaScript">Mozilla Developer Network</a>
-							<a href=""></a>
-							<a href=""></a>
-							<a href=""></a>
-						</li>
-					</ul>
+					<section>
+						<h2>Referências</h2>
+						<p>MDN é a melhor referência de JavaScript. Eloquent JavaScript é o melhor e mais divertido livro pra aprender JS e tem uma versão em HTML online. E o livro de Patterns do Addy Osmani é muito boa e também está à venda em papel.</p>
+						<ul>
+							<li><a href="https://developer.mozilla.org/en-US/docs/JavaScript" target="_blank">Mozilla Developer Network</a></li>
+							<li><a href="http://eloquentjavascript.net/contents.html" target="_blank">Eloquent JavaScript</a></li>
+							<li><a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/" target="_blank">Learning JavaScript Design Patterns</a></li>
+							<li><a href="http://jstherightway.com/" target="_blank">JavaScript: The Right Way</a> (work in progress)</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Artigos</h3>
+						<p>Bons artigos que li enquanto e antes de fazer essa apresentação:</p>
+						<ul style="font-size:.6em;line-height:1.5em">
+							<li><a href="http://dailyjs.com/js101.html" target="_blank">JS101</a></li>
+							<li><a href="http://www.joezimjs.com/tag/fundamentals/" target="_blank">JavaScript Fundamentals</a></li>
+							<li><a href="http://coding.smashingmagazine.com/2011/05/30/10-oddities-and-secrets-about-javascript/" target="_blank">Ten Oddities And Secrets About JavaScript</a></li>
+							<li><a href="http://coding.smashingmagazine.com/2010/04/20/seven-javascript-things-i-wish-i-knew-much-earlier-in-my-career/" target="_blank">Seven JavaScript Things I Wish I Knew Much Earlier In My Career</a></li>
+							<li><a href="http://coding.smashingmagazine.com/2010/02/22/the-seven-deadly-sins-of-javascript-implementation/" target="_blank">The Seven Deadly Sins Of JavaScript Implementation</a></li>
+							<li><a href="http://coding.smashingmagazine.com/2011/10/27/lessons-from-a-review-of-javascript-code/" target="_blank">Lessons From A Review Of JavaScript Code</a></li>
+							<li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/digging-into-design-patterns-in-javascript/" target="_blank">Understanding Design Patterns in JavaScript</a></li>
+							<li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/principles-of-maintainable-javascript/" target="_blank">Key Principles of Maintainable JavaScript</a></li>
+							<li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/the-essentials-of-writing-high-quality-javascript/" target="_blank">The Essentials of Writing High Quality JavaScript</a></li>
+						</ul>
+					</section>
+					<section>
+						<h3>Livros</h3>
+						<p>São os livros que eu li e mais aprendi:</p>
+						<ul style="font-size:.6em;line-height:1.5em">
+							<li><a href="http://shop.oreilly.com/product/9780596806767.do" target="_blank">JavaScript Patterns</a> - Stoyan Stefanov</li>
+							<li><a href="http://www.wrox.com/WileyCDA/WroxTitle/Professional-JavaScript-for-Web-Developers-3rd-Edition.productCd-1118222199.html" target="_blank">Professional JavaScript for Web Developers, 3rd Edition</a> - Nicholas C. Zakas</li>
+							<li><a href="http://shop.oreilly.com/product/9780596802806.do" target="_blank">High Performance JavaScript</a> - Nicholas C. Zakas</li>
+							<li><a href="http://shop.oreilly.com/product/0636920025245.do" target="_blank">Maintainable JavaScript</a> - Nicholas C. Zakas</li>
+							<li><a href="http://shop.oreilly.com/product/9780596517748.do" target="_blank">JavaScript: The Good Parts</a> -  Douglas Crockford</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Blogs</h3>
+						<p>Existem muitos outros blogs bons, mas esses são os que eu recomendo pra quem tá aprendendo:</p>
+						<ul>
+							<li><a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/" target="_blank">Nettuts+</a></li>
+							<li><a href="http://coding.smashingmagazine.com/tag/javascript/" target="_blank">Smashing Magazine</a></li>
+							<li><a href="http://www.joezimjs.com/" target="_blank">Joe Zim's JavaScript Blog</a></li>
+							<li><a href="http://javascriptweblog.wordpress.com/" target="_blank">JavaScript, JavaScript</a></li>
+							<li><a href="http://dailyjs.com/" target="_blank">Daily JavaScript</a></li>
+						</ul>
+					</section>
 				</section>
 
 						
