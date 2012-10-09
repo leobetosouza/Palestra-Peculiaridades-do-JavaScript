@@ -137,7 +137,7 @@ typeof x; // 'string'
 					<section>
 						
 						<h3>Como saber se a variavel é do tipo que eu quero?</h3>
-						<pre style="font-size:.5em"><code>
+						<pre style="font-size:.5em"><code contenteditable>
 // String:
 typeof variable === "string"
 
@@ -168,7 +168,7 @@ Array.isArray(arrayObject)
 						<p>
 							<code>===</code> e <code>!==</code> testam se os valores tem o mesmo tipo, então... 
 						</p>
-						<pre><code>
+						<pre><code contenteditable>
 1 == '1' // true
 1 === '1' // false
 '1' !== 1 // true
@@ -339,7 +339,7 @@ var vetor4 = [ 3 ];
 
 					<section>
 						<p>Cuidado na hora de retornar Object Literals de uma função</p>
-						<pre><code objectliteral>
+						<pre><code contenteditable>
 var teste = (function() {
 	return
 	{
@@ -354,7 +354,7 @@ console.log( teste.param );
 
 					<section>
 						<p>O ASI (Automatic Semicolon Insertion) insere um ponto-e-virgula após o <code>return</code> e a função retorna <code>undefined</code></p>
-						<pre><code objectliteral>
+						<pre><code contenteditable>
 var teste = (function() {
 	return {
 		param : 1
@@ -534,7 +534,7 @@ console.log( a ); // 10
 
 					<section>
 						<p>Expressões de Função são funções anônimas</p>
-						<pre><code>
+						<pre><code contenteditable>
 function teste1(){}
 var teste2 = function(){};
 
@@ -546,7 +546,7 @@ console.log( teste2.name ); // ''
 					<section>
 						
 						<p>Funções Anônimas Auto-executáveis são um pattern comum para criar escopo local</p>
-						<pre><code contenteditable="">
+						<pre><code contenteditable>
 (function($){
 	// pode usar o objeto $ com segurança
 }(jQuery));
