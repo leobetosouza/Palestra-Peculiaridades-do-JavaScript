@@ -49,9 +49,22 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Peculiaridades do JavaScript</h1>
-					<h3>(ou <em>O que o JS tem</em>)</h3>
-					<h4 class="inverted" style="line-height:1.4em;"><a href="http://leobetosouza.com.br/" rel="external">Leonardo Alberto Souza</a> (@<a href="http://twitter.com/leobetosouza" rel="external">leobetosouza</a>)</h4>
+					<section>
+						<h1>Peculiaridades do JavaScript</h1>
+						<h3>(ou <em>O que o JS tem</em>)</h3>
+						<h4 class="inverted" style="line-height:1.4em;"><a href="http://leobetosouza.com.br/" rel="external">Leonardo Alberto Souza</a> (@<a href="http://twitter.com/leobetosouza" rel="external">leobetosouza</a>)</h4>
+					</section>
+					<section>
+						<h3>Quem sou eu?</h3>
+						<ul lang="en">
+							<li class="fragment">Viciado em computadores e internet desde pequeno</li>
+							<li class="fragment">Cursei 3 anos de Ciência da Computação e hoje faço <strong>Sistemas de Informação na UFF</strong></li>
+							<li class="fragment">Trabalho como <strong>Desenvolvedor Front-end</strong> à 6 anos</li>
+							<li class="fragment">Hoje trabalho na <a href="http://www.ideais.com.br/" target="_blank">Ideais</a> na equipe que faz o Checkout White Label da B2W (carrinho de compras da Americanas.com, Submarino e Shoptime)</li>
+							<li class="fragment">Sou um dos administradores do <a href="http://riojs.org/">rio.js</a> e participo de diversos grupos relacionados à JS e desenvolvimento web</li>
+						</ul>
+						
+					</section>
 				</section>
 				
 				<section style="font-size:.7em">
@@ -349,14 +362,15 @@ var vetor4 = [ 3 ];
 					<section>
 						<p>Cuidado na hora de retornar Object Literals de uma função</p>
 						<pre><code contenteditable>
-var teste = (function() {
-	return
-	{
-		param : 1
-	}
-}());
+funtion foo() {
+	return 
+		{
+			param: 1
+		};
+}
+var bar = foo();
 
-console.log( teste.param );
+console.log( bar.param );
 // TypeError: Cannot read property 'param' of undefined
 						</code></pre>
 					</section>
@@ -364,13 +378,14 @@ console.log( teste.param );
 					<section>
 						<p>O ASI (Automatic Semicolon Insertion) insere um ponto-e-virgula após o <code>return</code> e a função retorna <code>undefined</code></p>
 						<pre><code contenteditable>
-var teste = (function() {
+funtion foo() {
 	return {
-		param : 1
-	}
-}());
+		param: 1
+	};
+}
+var bar = foo();
 
-console.log( teste.param );
+console.log( bar.param );
 // 1
 						</code></pre>
 					</section>
@@ -775,6 +790,7 @@ function volume() {
 					<div class="g-plusone" data-href="http://leobetosouza.github.com/Palestra-Peculiaridades-do-JavaScript/"></div>
 					
 					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://leobetosouza.github.com/Palestra-Peculiaridades-do-JavaScript/" data-text="Peculiaridades do JavaScript" data-via="leobetosouza" data-lang="pt" data-hashtags="javascript js">Tweetar</a>
+
 				</section>
 
 						
