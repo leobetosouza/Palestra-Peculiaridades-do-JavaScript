@@ -59,8 +59,7 @@
 						<ul lang="en" style="font-size:.7em">
 							<li class="fragment">Viciado em computadores e internet desde pequeno</li>
 							<li class="fragment">Cursei 3 anos de Ciência da Computação e hoje faço <strong>Sistemas de Informação na UFF</strong></li>
-							<li class="fragment">Trabalho como <strong>Desenvolvedor Front-end</strong> à 6 anos</li>
-							<li class="fragment">Hoje trabalho na <a href="http://www.ideais.com.br/" target="_blank">Ideais</a> na equipe que faz o Checkout White Label da B2W (carrinho de compras da Americanas.com, Submarino e Shoptime)</li>
+							<li class="fragment">Trabalho como <strong>Desenvolvedor Front-end</strong> há 6 anos</li>
 							<li class="fragment">Sou um dos administradores do <a href="http://riojs.org/">rio.js</a> e participo de diversos grupos relacionados à JS e desenvolvimento web</li>
 						</ul>
 						
@@ -72,10 +71,10 @@
 						JavaScript é uma linguagem bem fácil de aprender, mas tão difícil de dominar quanto a maioria das linguagens de programação.
 					</p>
 					<p>
-						Ela também é bastante odiada por diversos programadores, talvez por não conhecê-la bem.
+						Ela também é bastante odiada por diversos programadores, talvez por não conhecerem-na bem.
 					</p>
 					<p>
-						Essa apresentação visa mostrar um pouco daquilo que JavaScript tem de diferente e resolver alguns dos erros e enganos comuns.
+						Esta apresentação visa mostrar um pouco daquilo que JavaScript tem de diferente e resolver alguns dos erros e enganos comuns.
 					</p>
 				</section>
 
@@ -84,10 +83,10 @@
 					<section>
 						<h2>O grande equívoco: JavaScript não é Java!</h2>
 						<p style="font-size:.7em">
-							JavaScript foi batizada pelo seu criador, Brendan Eich, como <strong>LiveScript</strong>. Na época Java era uma nova e emergente tecnologia, que já estava aparecendo nos browsers. A Netscape achou que seria uma boa ideia pegar uma carona e colocou Java no nome.
+							JavaScript foi batizada pelo seu criador, Brendan Eich, como <strong>LiveScript</strong>. Na época Java era uma nova e emergente tecnologia que já estava aparecendo nos browsers. A Netscape achou que seria uma boa ideia pegar uma carona e colocou Java no nome.
 						</p>
 						<p style="font-size:.7em">
-							As pessoas passaram a achar que JavaScript era um Java mais limitado, ou um Java para o browser. Mas a verdade é que JS e Java tem bem pouco em comum...
+							As pessoas passaram a achar que JavaScript era um Java mais limitado, ou um Java para o browser. Mas a verdade é que JS e Java têm bem pouco em comum...
 						</p>
 					</section>
 					
@@ -145,7 +144,7 @@
 						<p>
 							Em Linguagens estritas e de tipagem forte isso aqui vai causar erros:
 						</p>
-						<pre><code>
+						<pre><code contenteditable>
 var x = 1;
 typeof x; // 'number'
 
@@ -234,7 +233,42 @@ Boolean(0); // false
 					<section data-state='alert'>
 						<p>Por favor, não use <code>Boolean()</code> nos seus códigos, nem <code>if ('teste')</code> :) </p>
 					</section>
-
+					
+				</section>
+				
+				<section>
+					
+					<section>
+						<h2>A mágica do <code>ou</code></h2>
+						
+						<p>
+							O operador <code>||</code> funciona de maneira um pouco diferente do que se espera.
+						</p>
+						<pre><code contenteditable>
+var x = 0 || 1;
+console.log( x ); // 1
+						</code></pre>
+					</section>
+					<section>
+						<p>O valor "retornado" do operador lógico ou, diferentemente do que pode-se esperar, não é necessáriamente um valor booleano.</p>
+						<p>Mas ele retorna o primeiro valor verdadeiro da expressão.</p>
+					</section>
+					<section>
+						<pre><code contenteditable>
+"" || false || 0 || "casa" // "casa"
+0 || true || 20 // true
+10 || true // 10
+undefined || {} // {}
+null || undefined || '[Function]' || [] //'[Function]' 
+						</code></pre>
+					</section>
+					
+					<section>
+						<h4>Esta peculiaridade é muito usada para lidar com prefixos de navegadores</h4>
+						<pre><code contenteditable>
+window.requestFullScreen = window.requestFullScreen || window.mozRequestFullScreen || window.webkitRequestFullScreen;
+						</code></pre>
+					</section>
 				</section>
 
 				<section>
