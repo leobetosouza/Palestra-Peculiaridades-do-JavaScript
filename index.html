@@ -239,7 +239,7 @@ Boolean(0); // false
 				<section>
 					
 					<section>
-						<h2>A mágica do <code>ou</code></h2>
+						<h2>A mágica do <code>or</code></h2>
 						
 						<p>
 							O operador <code>||</code> funciona de maneira um pouco diferente do que se espera.
@@ -250,8 +250,8 @@ console.log( x ); // 1
 						</code></pre>
 					</section>
 					<section>
-						<p>O valor "retornado" do operador lógico ou, diferentemente do que pode-se esperar, não é necessáriamente um valor booleano.</p>
-						<p>Mas ele retorna o primeiro valor verdadeiro da expressão.</p>
+						<p>O valor "retornado" do operador lógico or, diferentemente do que pode-se esperar, não é necessáriamente um booleano.</p>
+						<p>Mas ele retorna o primeiro valor verdadeiro da expressão, ou o último valor caso nenhum seja verdadeiro.</p>
 					</section>
 					<section>
 						<pre><code contenteditable>
@@ -259,7 +259,8 @@ console.log( x ); // 1
 0 || true || 20 // true
 10 || true // 10
 undefined || {} // {}
-null || undefined || '[Function]' || [] //'[Function]' 
+null || undefined || 0 // 0
+
 						</code></pre>
 					</section>
 					
@@ -269,6 +270,16 @@ null || undefined || '[Function]' || [] //'[Function]'
 window.requestFullScreen = window.requestFullScreen || window.mozRequestFullScreen || window.webkitRequestFullScreen;
 						</code></pre>
 					</section>
+					
+					<section>
+						<p>O and (<code>&&</code>) também trabalha de forma parecida:</p>
+						<pre><code contenteditable>
+"gato" && "cachorro" // "cachorro"
+false && 10 // false
+
+						</code></pre>
+					</section>
+					
 				</section>
 
 				<section>
